@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\PostController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,3 +21,6 @@ Route::get('recipe','RecipeController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/recipe/add','PostController@add');
+Route::post('/recipe/add','PostController@create');
