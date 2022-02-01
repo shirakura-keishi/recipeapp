@@ -20,3 +20,6 @@ Route::get('myrecipe','UserController@my_recipe');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/recipe/add','PostController@add');
+Route::post('/recipe/add','PostController@create');
