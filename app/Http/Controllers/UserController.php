@@ -9,16 +9,22 @@ use App\Recipe;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $user = Auth::user();
         //$user = User::all();
         return view('recipe.index',['user' => $user]);
     }
 
-    public function my_recipe(){
+    public function my_recipe(Request $request){
         $user = Auth::user();
         $items = Recipe::all();
-        return view('recipe.recipe',['items' => $items],['user' => $user]);
+        $param = ['items' => $items,'user' => $user];
+        return view('recipe.recipe',$param);
+    }
+    
+    public function admin(Request $request){
+        $users = User::all();
+        return view('user.index',['users' => $users]);
     }
 
 }
