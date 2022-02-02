@@ -10,19 +10,15 @@
     <table>
         @csrf
         <tr>
-            <th>name: </th>
+            <th>料理名: </th>
             <td><input type="text" name="name"></td>
         </tr>
         <tr>
-            <th>user_id: </th>
-            <td><input type="text" name="user_id"></td>
-        </tr>
-        <tr>
-            <th>ingredient: </th>
+            <th>材料: </th>
             <td><input type="text" name="ingredient"></td>
         </tr>
         <tr>
-            <th>description: </th>
+            <th>作り方: </th>
             <td><input type="text" name="description"></td>
         </tr>
         <tr>

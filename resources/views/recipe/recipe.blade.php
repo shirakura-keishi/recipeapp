@@ -19,6 +19,7 @@
             <td>{{$item->getData()}}</td>
     @endforeach
 </table>
+<p><a href="/recipe/add">レシピを作る</a></p>
 
 @else
 <p>※ログインしていません。(<a href="/login">ログイン</a>|<a href="/register">登録</a>)</p>
