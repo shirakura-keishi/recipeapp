@@ -9,11 +9,11 @@ use App\Recipe;
 
 class RecipeController extends Controller
 {
-    /*
-    public function index(){
+    public function index(Request $request,$id){
         $user = Auth::user();
-        //$user = User::all();
-        return view('recipe.index',['user' => $user]);
+        $people = User::all();
+        $item = Recipe::where('id',$id)->first();
+        $param = ['item' => $item,'people' => $people,'user' => $user];
+        return view('recipe.data',$param);
     }
-    */
 }

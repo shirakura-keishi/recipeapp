@@ -10,25 +10,36 @@
 @section('content')
 @if(Auth::check())
 <p>USER: {{$user->name . ' (' . $user->email . ')'}}でログインしています。</p>
+
 <table>
-    <tr><th>id</th><th>name</th><th>user_name</th></tr>
-    @foreach($items as $item)
-        <tr>
-            <td>{{$item->id}}</td>
-            <td><a href="/myrecipe/{{$item->id}}">{{$item->name}}</td>
-            <td>{{$item->getData()}}</td>
-    @endforeach
+    <tr>
+        <th>料理名</th>
+        <td>{{$item->name}}</td>
+    </tr>
+    <tr>
+        <th>登録者</th>
+        <td>{{$item->getData()}}</td>
+    </tr>
+    <tr>
+        <th>材料</th>
+        <td>{{$item->ingredient}}</td>
+    </tr>
+    <tr>
+        <th>作り方</th>
+        <td>{{$item->description}}</td>
+    </tr>
 </table>
+
+
 <p><a href="/recipe/add">レシピを作る</a></p>
 
 @else
 <p>※ログインしていません。(<a href="/login">ログイン</a>|<a href="/register">登録</a>)</p>
 @endif
-    <p>Hello</p>
+
 @endsection
 
 
 @section('footer')
 copyright 2022 kaichi.
 @endsection
-
