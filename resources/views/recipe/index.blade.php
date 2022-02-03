@@ -14,7 +14,20 @@
 @else
 <p>※ログインしていません。(<a href="/login">ログイン</a>|<a href="/register">登録</a>)</p>
 @endif
-    <p>Hello</p>
+
+<table>
+    <tr><th>id</th><th>recipe_id</th><th>comments</th><th>access</th><th>date1</th><th>date2</th></tr>
+    @foreach($items as $item)
+        <tr>
+            <td>{{$item->id}}</td>
+            <td>{{$item->recipe_id}}</td>
+            <td>{{$item->comments_count}}</td>
+            <td>{{$item->access_count}}</td>
+            <td>{{$item->created_at}}</td>
+            <td>{{$item->updated_at}}</td>
+    @endforeach
+</table>
+
 @endsection
 
 

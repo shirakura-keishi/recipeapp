@@ -18,14 +18,16 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('recipe','UserController@index');
+Route::get('recipe','PostController@index');
 
 Route::get('myrecipe','UserController@my_recipe');
 Route::get('myrecipe/{id?}','RecipeController@index');
 
-Route::get('/recipe/add','PostController@add');
-Route::post('/recipe/add','PostController@create');
+Route::get('/recipe/add','RecipeController@add');
+Route::post('/recipe/add','RecipeController@create');
 
 Route::get('admin','UserController@admin');
 
+Route::get('/recipe/post/{id?}','PostController@post');
+Route::post('/recipe/post/{id?}','PostController@create');
 

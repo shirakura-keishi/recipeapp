@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <th></th>
-            <td><input type="submit" value="登録"></td>
+            <td><input type="submit" value="保存する"></td>
         </tr>
     </table>
 </form>

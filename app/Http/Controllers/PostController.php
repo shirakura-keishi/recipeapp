@@ -7,26 +7,36 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Recipe;
 use App\User;
+use App\Post;
 
 class PostController extends Controller
 {
-    public function add(Request $request)
+    public function index(Request $request)
     {
-        return view('create.add');
+        $user = Auth::user();
+        $items = Post::all();
+        $param = ['user'=>$user,'items'=>$items];
+        return view('recipe.index',$param);
     }
-    public function create(Request $request)
+
+    public function post(Request $request,$id)
+    {
+        $user = Auth::user();
+        $item = Recipe::where('id',$id)->first();
+        $param = ['item' => $item,'user' => $user];
+        return view('post.post',$param);
+    }
+
+    public function create(Request $request,$id)
     {
         $user_id = Auth::user()->id;
         $param = [
             'id' => $request->id,
-            'name' => $request->name,
-            'user_id' => $user_id,
-            'ingredient' => $request->ingredient,
-            'description' => $request->description,
-            'created_at' => $request->created_at,
-            'updated_at' => $request->updated_at
+            'recipe_id' => $id,
+            'comments_count' => 0,
+            'access_count' => 0
         ];
-        DB::table('recipes')->insert($param);
-        return redirect('/myrecipe');
+        DB::table('posts')->insert($param);
+        return redirect('/recipe');
     }
 }
