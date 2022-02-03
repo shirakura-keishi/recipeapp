@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Recipe extends Model
 {
     public function user(){
-        return $this->belongTo('App\User');
+        return $this->belongsTo('App\User');
     }
     public function getData(){
-        return $this->name;
+        return $this->user->name;
     }
 }
