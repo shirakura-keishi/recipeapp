@@ -31,7 +31,6 @@ class PostController extends Controller
     {
         $user_id = Auth::user()->id;
         $param = [
-            'id' => $request->id,
             'recipe_id' => $id,
             'comments_count' => 0,
             'access_count' => 0

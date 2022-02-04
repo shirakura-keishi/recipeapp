@@ -16,7 +16,7 @@
         <tr>
             <td>{{$item->id}}</td>
             <td><a href="/myrecipe/{{$item->id}}">{{$item->name}}</td>
-            <td>{{$item->getData()}}</td>
+            <td>{{$item->user->name}}</td>
     @endforeach
 </table>
 <p><a href="/recipe/add">レシピを作る</a></p>

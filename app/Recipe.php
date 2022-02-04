@@ -9,7 +9,8 @@ class Recipe extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
-    public function getData(){
-        return $this->user->name;
+
+    public function post(){
+        return $this->hasOne('App\Post');
     }
 }

@@ -18,7 +18,7 @@
     </tr>
     <tr>
         <th>登録者</th>
-        <td>{{$item->getData()}}</td>
+        <td>{{$item->user->name}}</td>
     </tr>
     <tr>
         <th>材料</th>
