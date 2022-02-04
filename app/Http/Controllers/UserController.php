@@ -19,9 +19,11 @@ class UserController extends Controller
 
     public function my_recipe(Request $request){
         $user = Auth::user();
-        $people = User::all();
+        $posts = Post::all();
+        $post_check = 0;
+        $people = User::all();//無くても可
         $items = Recipe::where('user_id',$user->id)->get();
-        $param = ['items' => $items,'people' => $people,'user' => $user];
+        $param = ['items' => $items,'posts' => $posts, 'post_check' => $post_check, 'people' => $people,'user' => $user];
         return view('recipe.recipe',$param);
     }
     

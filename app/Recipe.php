@@ -10,7 +10,4 @@ class Recipe extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function post(){
-        return $this->hasOne('App\Post');
-    }
 }
