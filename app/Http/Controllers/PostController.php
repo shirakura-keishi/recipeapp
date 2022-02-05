@@ -23,7 +23,9 @@ class PostController extends Controller
     {
         $user = Auth::user();
         $item = Recipe::where('id',$id)->first();
-        $param = ['item' => $item,'user' => $user];
+        $posts = Post::all();
+        $post_check = 0;
+        $param = ['item' => $item,'user' => $user, 'posts'=>$posts, 'post_check' => $post_check];
         return view('post.post',$param);
     }
 

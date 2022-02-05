@@ -41,4 +41,10 @@ class RecipeController extends Controller
         DB::table('recipes')->insert($param);
         return redirect('/myrecipe');
     }
+
+    public function delete(Request $request,$id)
+    {
+        DB::table('recipes')->where('id',$id)->delete();
+        return redirect('/myrecipe');
+    }
 }

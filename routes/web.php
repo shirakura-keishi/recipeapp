@@ -27,6 +27,9 @@ Route::get('myrecipe/{id?}','PostController@post');
 Route::get('add','RecipeController@add');
 Route::post('add','RecipeController@create');
 
+Route::get('/myrecipe/delete/{id?}','RecipeController@delete');
+Route::post('/myrecipe/delete/{id?}','RecipeController@delete');
+
 Route::get('admin','UserController@admin');
 
 Route::get('/recipe/post/{id?}','PostController@post');

@@ -31,10 +31,27 @@
     </tr>
 </table>
 
+@foreach($posts as $post)
+    @if($post->recipe_id == $item->id)
+        @php
+        $post_check = 1;
+        @endphp
+    @endif
+@endforeach
+
+@if ($post_check != 1)
 <form action="/recipe/post/{{$item->id}}" method="post">
 @csrf
 <input type="submit" value="投稿する">
 </form>
+<form action="/myrecipe/delete/{{$item->id}}" method="post">
+@csrf
+<input type="submit" value="削除する">
+</form>
+@else
+<p>このレシピは投稿済みです。</p>
+@endif
+
 @endif
 
 @endsection
