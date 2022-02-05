@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<form action="/recipe/add" method="post">
+<form action="add" method="post">
     <table>
         @csrf
         <tr>

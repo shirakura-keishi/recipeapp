@@ -29,6 +29,8 @@
     @endforeach
 </table>
 
+<a href="/myrecipe">マイページへ</a>
+
 @endsection
 
 

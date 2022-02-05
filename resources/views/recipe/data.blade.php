@@ -31,7 +31,7 @@
 </table>
 
 
-<p><a href="/recipe/add">レシピを作る</a></p>
+<a href="/recipe">トップページへ</a>
 
 @else
 <p>※ログインしていません。(<a href="/login">ログイン</a>|<a href="/register">登録</a>)</p>

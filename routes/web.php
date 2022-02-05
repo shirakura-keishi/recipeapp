@@ -24,8 +24,8 @@ Route::get('recipe/{id?}','RecipeController@index');
 Route::get('myrecipe','UserController@my_recipe');
 Route::get('myrecipe/{id?}','PostController@post');
 
-Route::get('/recipe/add','RecipeController@add');
-Route::post('/recipe/add','RecipeController@create');
+Route::get('add','RecipeController@add');
+Route::post('add','RecipeController@create');
 
 Route::get('admin','UserController@admin');
 

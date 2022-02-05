@@ -4,7 +4,7 @@
 
 @section('menubar')
     @parent
-    トップページ
+    マイページ
 @endsection
 
 @section('content')
@@ -36,12 +36,14 @@
     @endphp
     @endforeach
 </table>
-<p><a href="/recipe/add">レシピを作る</a></p>
+<p><a href="add">レシピを作る</a></p>
 
 @else
 <p>※ログインしていません。(<a href="/login">ログイン</a>|<a href="/register">登録</a>)</p>
 @endif
-    <p>Hello</p>
+
+<a href="/recipe">トップページへ</a>
+
 @endsection
 
 
