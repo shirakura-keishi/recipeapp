@@ -15,12 +15,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('recipe','UserController@index');
-Route::get('myrecipe','UserController@my_recipe');
-Route::get('admin','UserController@admin');
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/recipe/add','PostController@add');
-Route::post('/recipe/add','PostController@create');
+Route::get('recipe','PostController@index');
+Route::get('recipe/{id?}','RecipeController@index');
+
+Route::get('myrecipe','UserController@my_recipe');
+Route::get('myrecipe/{id?}','PostController@post');
+
+Route::get('add','RecipeController@add');
+Route::post('add','RecipeController@create');
+
+Route::get('/myrecipe/delete/{id?}','RecipeController@delete');
+Route::post('/myrecipe/delete/{id?}','RecipeController@delete');
+
+Route::get('admin','UserController@admin');
+
+Route::get('/recipe/post/{id?}','PostController@post');
+Route::post('/recipe/post/{id?}','PostController@create');
+

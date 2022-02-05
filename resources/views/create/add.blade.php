@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<form action="/recipe/add" method="post">
+<form action="add" method="post">
     <table>
         @csrf
         <tr>
@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <th>作り方: </th>
-            <td><input type="text" name="description"></td>
+            <td><textarea name="description" cols="10000" rows="6"></textarea></td>
         </tr>
         <tr>
             <th>created_at: </th>
@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <th></th>
-            <td><input type="submit" value="登録"></td>
+            <td><input type="submit" value="保存する"></td>
         </tr>
     </table>
 </form>

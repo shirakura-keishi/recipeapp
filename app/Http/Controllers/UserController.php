@@ -6,20 +6,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Recipe;
+use App\Post;
 
 class UserController extends Controller
 {
+    /*PostControllerに移動
     public function index(Request $request){
         $user = Auth::user();
-        //$user = User::all();
         return view('recipe.index',['user' => $user]);
     }
+    */
 
     public function my_recipe(Request $request){
         $user = Auth::user();
-        $people = User::all();
-        $items = Recipe::all();
-        $param = ['items' => $items,'people' => $people,'user' => $user];
+        $posts = Post::all();
+        $post_check = 0;
+        $people = User::all();//無くても可
+        $items = Recipe::where('user_id',$user->id)->get();
+        $param = ['items' => $items,'posts' => $posts, 'post_check' => $post_check, 'people' => $people,'user' => $user];
         return view('recipe.recipe',$param);
     }
     
