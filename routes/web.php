@@ -35,3 +35,5 @@ Route::get('admin','UserController@admin');
 Route::get('/recipe/post/{id?}','PostController@post');
 Route::post('/recipe/post/{id?}','PostController@create');
 
+Route::get('/myrecipe/cancel/{id?}','RecipeController@post_cancel');
+Route::post('/myrecipe/cancel/{id?}','RecipeController@post_cancel');
