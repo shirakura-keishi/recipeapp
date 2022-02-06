@@ -37,3 +37,6 @@ Route::post('/recipe/post/{id?}','PostController@create');
 
 Route::get('/myrecipe/cancel/{id?}','RecipeController@post_cancel');
 Route::post('/myrecipe/cancel/{id?}','RecipeController@post_cancel');
+
+Route::get('/myrecipe/edit/{id?}','RecipeController@edit');
+Route::post('/myrecipe/edit/{id?}','RecipeController@update');
