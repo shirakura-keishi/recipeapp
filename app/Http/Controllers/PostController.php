@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Recipe;
 use App\User;
+use App\Recipe;
 use App\Post;
+use App\Comment;
 
 class PostController extends Controller
 {
@@ -39,5 +40,13 @@ class PostController extends Controller
         ];
         DB::table('posts')->insert($param);
         return redirect('/recipe');
+    }
+
+    public function commentlist(Request $request)
+    {
+        $user = Auth::user();
+        $items = Comment::all();
+        $param = ['user' => $user, 'items' => $items];
+        return view('post.commentlist',$param);
     }
 }

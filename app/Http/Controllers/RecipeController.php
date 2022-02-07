@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Recipe;
 use App\Post;
+use App\Comment;
 
 class RecipeController extends Controller
 {
@@ -16,8 +17,9 @@ class RecipeController extends Controller
         $people = User::all();
         $item = Recipe::where('id',$id)->first();
         $post = Post::where('recipe_id',$id)->first();
+        $comments = Comment::where('post_id',$post->id)->get();
         DB::table('posts')->where('recipe_id',$id)->update(['access_count'=>$post->access_count+1]);
-        $param = ['item' => $item,'people' => $people,'user' => $user];
+        $param = ['item' => $item,'comments' => $comments, 'people' => $people,'user' => $user];
         return view('recipe.data',$param);
     }
 

@@ -35,3 +35,5 @@ Route::get('admin','UserController@admin');
 Route::get('/recipe/post/{id?}','PostController@post');
 Route::post('/recipe/post/{id?}','PostController@create');
 
+Route::get('commentlist','PostController@commentlist');
+
