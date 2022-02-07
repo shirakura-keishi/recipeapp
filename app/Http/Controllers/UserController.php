@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Recipe;
 use App\Post;
+use App\Comment;
 
 class UserController extends Controller
 {

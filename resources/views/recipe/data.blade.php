@@ -30,6 +30,20 @@
     </tr>
 </table>
 
+<p><label>comments</label></p>
+<table> 
+    <tr><th>id</th><th>recipe_name</th><th>poster</th><th>commenter</th><th>comment</th></tr>
+    @foreach($comments as $comment)
+        <tr>
+            <td>{{$comment->id}}</td>
+            <td>{{$comment->post->recipe->name}}</td>
+            <td>{{$comment->post->recipe->user->name}}</td>
+            <td>{{$comment->user->name}}</td>
+            <td>{{$comment->comment}}</td>
+        </tr>
+    @endforeach
+</table>
+
 
 <a href="/recipe">トップページへ</a>
 

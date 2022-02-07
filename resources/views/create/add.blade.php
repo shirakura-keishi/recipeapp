@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <th>作り方: </th>
-            <td><textarea name="description" cols="10000" rows="6"></textarea></td>
+            <td><textarea name="description" cols="150" rows="10"></textarea></td>
         </tr>
         <tr>
             <th>created_at: </th>
