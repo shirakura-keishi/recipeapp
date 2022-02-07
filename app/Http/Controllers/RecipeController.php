@@ -44,9 +44,37 @@ class RecipeController extends Controller
         return redirect('/myrecipe');
     }
 
+    public function edit(Request $request,$id)
+    {
+        $item =DB::table('recipes')->where('id',$id)->first();
+        return view('create.edit',['form'=>$item]);
+    }
+
+    public function update(Request $request,$id)
+    {
+        $user_id = Auth::user()->id;
+        $param = [
+            'id' => $request->id,
+            'name' => $request->name,
+            'user_id' => $user_id,
+            'ingredient' => $request->ingredient,
+            'description' => $request->description,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at
+        ];
+        DB::table('recipes')->where('id',$id)->update($param);
+        return redirect('/myrecipe');
+    }
+
     public function delete(Request $request,$id)
     {
         DB::table('recipes')->where('id',$id)->delete();
+        return redirect('/myrecipe');
+    }
+
+    public function post_cancel(Request $request,$id)
+    {
+        DB::table('posts')->where('id',$id)->delete();
         return redirect('/myrecipe');
     }
 }
