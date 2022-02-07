@@ -46,7 +46,8 @@ class RecipeController extends Controller
 
     public function edit(Request $request,$id)
     {
-        $item =DB::table('recipes')->where('id',$id)->first();
+        //$item = DB::table('recipes')->where('id',$id)->first();　元のwhere文
+        $item = Recipe::where('id',$id)->first();//修正後
         return view('create.edit',['form'=>$item]);
     }
 

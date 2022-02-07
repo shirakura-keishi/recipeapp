@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<form action="/myrecipe/edit/{{$form->id}}" method="post">
+<form action="/myrecipe/update/{{$form->id}}" method="post">
     <table>
         @csrf
         <input type="hidden" name="id" value="{{$form->id}}">
@@ -36,6 +36,7 @@
         </tr>
     </table>
 </form>
+<a href="/myrecipe">保存せずマイページへ戻る</a>
 @endsection
 
 @section('footer')

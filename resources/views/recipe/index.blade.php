@@ -15,7 +15,7 @@
 <p>※ログインしていません。(<a href="/login">ログイン</a>|<a href="/register">登録</a>)</p>
 @endif
 
-<table>
+<table align="center">
     <tr><th>id</th><th>recipe_name</th><th>poster</th>0<th>comments</th><th>access</th><th>date1</th><th>date2</th></tr>
     @foreach($items as $item)
         <tr>
