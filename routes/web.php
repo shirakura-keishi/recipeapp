@@ -20,6 +20,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('recipe','PostController@index');
 Route::get('recipe/{id?}','RecipeController@index');
+Route::get('recipe/{id?}/comment','PostController@comment');
+Route::get('recipe/{id?}/comment/add','PostController@comment_add');
+Route::post('recipe/{id?}/comment/add','PostController@comment_add');
 
 Route::get('myrecipe','UserController@my_recipe');
 Route::get('myrecipe/{id?}','PostController@post');

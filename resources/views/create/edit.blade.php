@@ -1,5 +1,5 @@
 @extends('layouts.recipeapp')
-@section('title','レシピ編集')
+@section('title','レシピサイト')
 @section('menubar')
 @parent
 レシピ編集

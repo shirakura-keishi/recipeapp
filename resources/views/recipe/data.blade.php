@@ -30,6 +30,8 @@
     </tr>
 </table>
 
+<a href="/recipe/{{$id}}/comment">コメントを書き込む</a>
+
 <p><label>comments</label></p>
 <table align="center"> 
     <tr><th>id</th><th>recipe_name</th><th>poster</th><th>commenter</th><th>comment</th></tr>

@@ -18,7 +18,7 @@ class RecipeController extends Controller
         $item = Recipe::where('id',$post->recipe_id)->first();
         $comments = Comment::where('post_id',$id)->get();
         DB::table('posts')->where('id',$id)->update(['access_count'=>$post->access_count+1]);
-        $param = ['item' => $item,'comments' => $comments,'user' => $user];
+        $param = ['id' => $id,'item' => $item,'comments' => $comments,'user' => $user];
         return view('recipe.data',$param);
     }
 
