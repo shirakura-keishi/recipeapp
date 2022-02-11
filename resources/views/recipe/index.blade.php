@@ -20,7 +20,7 @@
     @foreach($items as $item)
         <tr>
             <td>{{$item->id}}</td>
-            <td><a href="/recipe/{{$item->recipe_id}}">{{$item->recipe->name}}</a></td>
+            <td><a href="/recipe/{{$item->id}}">{{$item->recipe->name}}</a></td>
             <td>{{$item->recipe->user->name}}</td>
             <td>{{$item->comments_count}}</td>
             <td>{{$item->access_count}}</td>

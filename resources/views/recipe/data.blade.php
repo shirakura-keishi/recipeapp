@@ -44,12 +44,11 @@
     @endforeach
 </table>
 
-
-<a href="/recipe">トップページへ戻る</a>
-
 @else
 <p>※ログインしていません。(<a href="/login">ログイン</a>|<a href="/register">登録</a>)</p>
 @endif
+
+<a href="/recipe">トップページへ戻る</a>
 
 @endsection
 
