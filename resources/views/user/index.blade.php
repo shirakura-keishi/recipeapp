@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-<table>
+<table align="center">
     <tr><th>id</th><th>name</th><th>user_name</th></tr>
     @foreach($users as $user)
         <tr>

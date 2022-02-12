@@ -11,12 +11,6 @@ use App\Comment;
 
 class UserController extends Controller
 {
-    /*PostControllerに移動
-    public function index(Request $request){
-        $user = Auth::user();
-        return view('recipe.index',['user' => $user]);
-    }
-    */
 
     public function my_recipe(Request $request){
         $user = Auth::user();
