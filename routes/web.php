@@ -49,3 +49,10 @@ Route::get('commentlist','PostController@commentlist');
 Route::get('/myrecipe/cancel/{id?}','RecipeController@post_cancel');
 Route::post('/myrecipe/cancel/{id?}','RecipeController@post_cancel');
 
+<<<<<<< HEAD
+Route::get('/myrecipe/edit/{id?}','RecipeController@edit');
+Route::post('/myrecipe/edit/{id?}','RecipeController@update');
+
+Route::get('/recipe/search/{name?}','RecipeController@search');
+=======
+>>>>>>> master
