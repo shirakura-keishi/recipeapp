@@ -16,7 +16,7 @@
 @endif
 
 <table>
-    <tr><th>id</th><th>recipe_name</th><th>poster</th>0<th>comments</th><th>access</th><th>date1</th><th>date2</th></tr>
+    <tr><th>id</th><th>recipe_name</th><th>poster</th><th>comments</th><th>access</th><th>date1</th><th>date2</th></tr>
     @foreach($items as $item)
         <tr>
             <td>{{$item->id}}</td>

@@ -77,4 +77,29 @@ class RecipeController extends Controller
         DB::table('posts')->where('id',$id)->delete();
         return redirect('/myrecipe');
     }
+
+    public function search(Request $request,$name){
+        //SELECT * FROM posts where recipe_id in (SELECT id FROM recipes where name like '% $name %');
+        //レシピ名検索
+        $user = Auth::user();
+        $results=DB::table('recipes')->select('id')->where('name','like', '%'.$name.'%')->get();
+        $count=0;
+        $items=NULL;
+        foreach($results as $result){
+            if($count==0){
+                $items=Post::where('recipe_id',$result->id)->get();
+                $count+=1;
+            }
+            else{
+                $items[]=Post::where('recipe_id',$result->id)->first();
+            }
+        }
+        if($items==NULL){
+            $items=Post::all();
+            echo "検索条件に当てはまるものはありませんでした\n
+            レシピ一覧を表示します\n";
+        }
+        $param = ['user'=>$user,'items'=>$items];
+        return view('recipe.index',$param);
+    }
 }
