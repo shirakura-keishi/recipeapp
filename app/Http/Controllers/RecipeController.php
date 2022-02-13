@@ -12,14 +12,15 @@ use App\Comment;
 
 class RecipeController extends Controller
 {
-    public function index(Request $request,$id){
+    public function index(Request $request, $id)
+    {
         $user = Auth::user();
-        $post = Post::where('id',$id)->first();
-        $item = Recipe::where('id',$post->recipe_id)->first();
-        $comments = Comment::where('post_id',$id)->get();
-        DB::table('posts')->where('id',$id)->update(['access_count'=>$post->access_count+1]);
-        $param = ['id' => $id,'item' => $item,'comments' => $comments,'user' => $user];
-        return view('recipe.data',$param);
+        $post = Post::where('id', $id)->first();
+        $item = Recipe::where('id', $post->recipe_id)->first();
+        $comments = Comment::where('post_id', $id)->get();
+        DB::table('posts')->where('id', $id)->update(['access_count' => $post->access_count + 1]);
+        $param = ['id' => $id, 'item' => $item, 'comments' => $comments, 'user' => $user];
+        return view('recipe.data', $param);
     }
 
     public function add(Request $request)
@@ -43,14 +44,14 @@ class RecipeController extends Controller
         return redirect('/myrecipe');
     }
 
-    public function edit(Request $request,$id)
+    public function edit(Request $request, $id)
     {
         //$item = DB::table('recipes')->where('id',$id)->first();　元のwhere文
-        $item = Recipe::where('id',$id)->first();//修正後
-        return view('create.edit',['form'=>$item]);
+        $item = Recipe::where('id', $id)->first(); //修正後
+        return view('create.edit', ['form' => $item]);
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $user_id = Auth::user()->id;
         $param = [
@@ -62,44 +63,44 @@ class RecipeController extends Controller
             'created_at' => $request->created_at,
             'updated_at' => $request->updated_at
         ];
-        DB::table('recipes')->where('id',$id)->update($param);
+        DB::table('recipes')->where('id', $id)->update($param);
         return redirect('/myrecipe');
     }
 
-    public function delete(Request $request,$id)
+    public function delete(Request $request, $id)
     {
-        DB::table('recipes')->where('id',$id)->delete();
+        DB::table('recipes')->where('id', $id)->delete();
         return redirect('/myrecipe');
     }
 
-    public function post_cancel(Request $request,$id)
+    public function post_cancel(Request $request, $id)
     {
-        DB::table('posts')->where('id',$id)->delete();
+        DB::table('posts')->where('id', $id)->delete();
         return redirect('/myrecipe');
     }
 
-    public function search(Request $request,$name){
+    public function search(Request $request, $name)
+    {
         //SELECT * FROM posts where recipe_id in (SELECT id FROM recipes where name like '% $name %');
         //レシピ名検索
         $user = Auth::user();
-        $results=DB::table('recipes')->select('id')->where('name','like', '%'.$name.'%')->get();
-        $count=0;
-        $items=NULL;
-        foreach($results as $result){
-            if($count==0){
-                $items=Post::where('recipe_id',$result->id)->get();
-                $count+=1;
-            }
-            else{
-                $items[]=Post::where('recipe_id',$result->id)->first();
+        $results = DB::table('recipes')->select('id')->where('name', 'like', '%' . $name . '%')->get();
+        $count = 0;
+        $items = NULL;
+        foreach ($results as $result) {
+            if ($count == 0) {
+                $items = Post::where('recipe_id', $result->id)->get();
+                $count += 1;
+            } else {
+                $items[] = Post::where('recipe_id', $result->id)->first();
             }
         }
-        if($items==NULL){
-            $items=Post::all();
+        if ($items == NULL) {
+            $items = Post::all();
             echo "検索条件に当てはまるものはありませんでした\n
             レシピ一覧を表示します\n";
         }
-        $param = ['user'=>$user,'items'=>$items];
-        return view('recipe.index',$param);
+        $param = ['user' => $user, 'items' => $items];
+        return view('recipe.index', $param);
     }
 }

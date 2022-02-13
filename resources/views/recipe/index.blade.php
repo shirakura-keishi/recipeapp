@@ -3,8 +3,8 @@
 @section('title','レシピサイト')
 
 @section('menubar')
-    @parent
-    トップページ
+@parent
+トップページ
 @endsection
 
 @section('content')
@@ -15,23 +15,26 @@
 <p>※ログインしていません。(<a href="/login">ログイン</a>|<a href="/register">登録</a>)</p>
 @endif
 
-<<<<<<< HEAD
-<table>
-    <tr><th>id</th><th>recipe_name</th><th>poster</th><th>comments</th><th>access</th><th>date1</th><th>date2</th></tr>
-=======
 <table align="center">
-    <tr><th>id</th><th>recipe_name</th><th>poster</th>0<th>comments</th><th>access</th><th>date1</th><th>date2</th></tr>
->>>>>>> master
+    <tr>
+        <th>id</th>
+        <th>recipe_name</th>
+        <th>poster</th>
+        <th>comments</th>
+        <th>access</th>
+        <th>date1</th>
+        <th>date2</th>
+    </tr>
     @foreach($items as $item)
-        <tr>
-            <td>{{$item->id}}</td>
-            <td><a href="/recipe/{{$item->id}}">{{$item->recipe->name}}</a></td>
-            <td>{{$item->recipe->user->name}}</td>
-            <td>{{$item->comments_count}}</td>
-            <td>{{$item->access_count}}</td>
-            <td>{{$item->created_at}}</td>
-            <td>{{$item->updated_at}}</td>
-        </tr>
+    <tr>
+        <td>{{$item->id}}</td>
+        <td><a href="/recipe/{{$item->id}}">{{$item->recipe->name}}</a></td>
+        <td>{{$item->recipe->user->name}}</td>
+        <td>{{$item->comments_count}}</td>
+        <td>{{$item->access_count}}</td>
+        <td>{{$item->created_at}}</td>
+        <td>{{$item->updated_at}}</td>
+    </tr>
     @endforeach
 </table>
 
@@ -43,4 +46,3 @@
 @section('footer')
 copyright 2022 kaichi.
 @endsection
-

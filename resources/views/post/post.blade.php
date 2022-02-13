@@ -3,8 +3,8 @@
 @section('title','レシピサイト')
 
 @section('menubar')
-    @parent
-    トップページ
+@parent
+トップページ
 @endsection
 
 @section('content')
@@ -32,34 +32,34 @@
 </table>
 
 @foreach($posts as $post)
-    @if($post->recipe_id == $item->id)
-        @php
-        $post_check = 1;
-        break;
-        @endphp
-    @endif
+@if($post->recipe_id == $item->id)
+@php
+$post_check = 1;
+break;
+@endphp
+@endif
 @endforeach
 
 <form action="/myrecipe/edit/{{$item->id}}" method="post">
-@csrf 
-<input type="submit" value="編集する">
+    @csrf
+    <input type="submit" value="編集する">
 </form>
 
 @if ($post_check != 1)
-    <form action="/recipe/post/{{$item->id}}" method="post">
+<form action="/recipe/post/{{$item->id}}" method="post">
     @csrf
     <input type="submit" value="投稿する">
-    </form>
-    <form action="/myrecipe/delete/{{$item->id}}" method="post">
+</form>
+<form action="/myrecipe/delete/{{$item->id}}" method="post">
     @csrf
     <input type="submit" value="削除する">
-    </form>
+</form>
 @else
-    <p>このレシピは投稿済みです。</p>
-    <form action="/myrecipe/cancel/{{$post->id}}" method="post">
-    @csrf 
+<p>このレシピは投稿済みです。</p>
+<form action="/myrecipe/cancel/{{$post->id}}" method="post">
+    @csrf
     <input type="submit" value="投稿を削除する">
-    </form>
+</form>
 @endif
 @endif
 <a href="/myrecipe">マイページへ戻る</a>
