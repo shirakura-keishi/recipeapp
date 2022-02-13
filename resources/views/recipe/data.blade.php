@@ -11,7 +11,7 @@
 @if(Auth::check())
 <p>USER: {{$user->name . ' (' . $user->email . ')'}}でログインしています。</p>
 
-<table>
+<table align="center">
     <tr>
         <th>料理名</th>
         <td>{{$item->name}}</td>
@@ -30,8 +30,10 @@
     </tr>
 </table>
 
+<a href="/recipe/{{$id}}/comment">コメントを書き込む</a>
+
 <p><label>comments</label></p>
-<table> 
+<table align="center"> 
     <tr><th>id</th><th>recipe_name</th><th>poster</th><th>commenter</th><th>comment</th></tr>
     @foreach($comments as $comment)
         <tr>
@@ -44,12 +46,11 @@
     @endforeach
 </table>
 
-
-<a href="/recipe">トップページへ</a>
-
 @else
 <p>※ログインしていません。(<a href="/login">ログイン</a>|<a href="/register">登録</a>)</p>
 @endif
+
+<a href="/recipe">トップページへ戻る</a>
 
 @endsection
 

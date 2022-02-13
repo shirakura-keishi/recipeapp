@@ -49,4 +49,25 @@ class PostController extends Controller
         $param = ['user' => $user, 'items' => $items];
         return view('post.commentlist',$param);
     }
+
+    public function comment(Request $request,$id)
+    {
+        $user = Auth::user();
+        $post = Post::where('id',$id)->first();
+        $item = Recipe::where('id',$post->recipe_id)->first();
+        $param = ['id' => $id,'item' => $item,'user' => $user];
+        return view('create.add_comment',$param);
+    }
+
+    public function comment_add(Request $request,$id)
+    {
+        $user_id = Auth::user()->id;
+        $param = [
+            'post_id' => $id,
+            'user_id' => $user_id,
+            'comment' => $request->comment
+        ];
+        DB::table('comments')->insert($param);
+        return redirect('/recipe');
+    }
 }

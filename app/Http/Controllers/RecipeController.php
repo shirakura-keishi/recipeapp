@@ -14,12 +14,11 @@ class RecipeController extends Controller
 {
     public function index(Request $request,$id){
         $user = Auth::user();
-        $people = User::all();
-        $item = Recipe::where('id',$id)->first();
-        $post = Post::where('recipe_id',$id)->first();
-        $comments = Comment::where('post_id',$post->id)->get();
-        DB::table('posts')->where('recipe_id',$id)->update(['access_count'=>$post->access_count+1]);
-        $param = ['item' => $item,'comments' => $comments, 'people' => $people,'user' => $user];
+        $post = Post::where('id',$id)->first();
+        $item = Recipe::where('id',$post->recipe_id)->first();
+        $comments = Comment::where('post_id',$id)->get();
+        DB::table('posts')->where('id',$id)->update(['access_count'=>$post->access_count+1]);
+        $param = ['id' => $id,'item' => $item,'comments' => $comments,'user' => $user];
         return view('recipe.data',$param);
     }
 
@@ -46,7 +45,8 @@ class RecipeController extends Controller
 
     public function edit(Request $request,$id)
     {
-        $item =DB::table('recipes')->where('id',$id)->first();
+        //$item = DB::table('recipes')->where('id',$id)->first();　元のwhere文
+        $item = Recipe::where('id',$id)->first();//修正後
         return view('create.edit',['form'=>$item]);
     }
 
