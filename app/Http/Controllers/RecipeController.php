@@ -79,16 +79,18 @@ class RecipeController extends Controller
         return redirect('/myrecipe');
     }
 
-    public function search(Request $request, $name)
+    public function search(Request $request)
     {
         //SELECT * FROM posts where recipe_id in (SELECT id FROM recipes where name like '% $name %');
         //レシピ名検索
+        $name = $request->searchward;
+        $subject = $request->item;
         $user = Auth::user();
-        $results = DB::table('recipes')->select('id')->where('name', 'like', '%' . $name . '%')->get();
+        $results = DB::table('recipes')->select('id')->where($subject, 'like', '%' . $name . '%')->get();
         $count = 0;
         $items = NULL;
         foreach ($results as $result) {
-            if ($count == 0) {
+            if ($count == 0) {//レコードが1つでもget()を使ってもいいのでは？
                 $items = Post::where('recipe_id', $result->id)->get();
                 $count += 1;
             } else {

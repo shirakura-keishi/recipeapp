@@ -15,6 +15,18 @@
 <p>※ログインしていません。(<a href="/login">ログイン</a>|<a href="/register">登録</a>)</p>
 @endif
 
+<form action="/recipe/search" method="post">  
+    @csrf 
+    <table align="center">
+        <td><select name="item">
+            <option value="name">レシピ名</option>
+            <option value="ingredient">材料</option>
+        </select></td>        
+        <td><input type="text" name="searchward"></td>
+        <td><input type="submit" value="検索する"></td></tr>
+    </table>    
+</form>
+
 <table align="center">
     <tr>
         <th>id</th>
