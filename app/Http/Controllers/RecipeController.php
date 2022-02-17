@@ -92,17 +92,18 @@ class RecipeController extends Controller
         foreach ($results as $result) {
             if ($count == 0) {//レコードが1つでもget()を使ってもいいのでは？
                 $items = Post::where('recipe_id', $result->id)->get();
-                $count += 1;
             } else {
                 $items[] = Post::where('recipe_id', $result->id)->first();
             }
+            $count += 1;
         }
+        $msg = $count."件見つかりました";
+
         if ($items == NULL) {
             $items = Post::all();
-            echo "検索条件に当てはまるものはありませんでした\n
-            レシピ一覧を表示します\n";
+            $msg = "検索条件に当てはまるものはありませんでした。レシピ一覧を表示します";
         }
-        $param = ['user' => $user, 'items' => $items];
+        $param = ['user' => $user, 'count' => $count,'msg' => $msg, 'items' => $items];
         return view('recipe.index', $param);
     }
 }

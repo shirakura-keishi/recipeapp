@@ -30,7 +30,9 @@
     </tr>
 </table>
 
-<a href="/recipe/{{$id}}/comment">コメントを書き込む</a>
+@if($user->id != $item->user_id) 
+<a href="/recipe/{{$id}}/comment">評価・コメントを書き込む</a>
+@endif
 
 <p><label>comments</label></p>
 <table align="center">

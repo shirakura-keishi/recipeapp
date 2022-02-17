@@ -16,7 +16,8 @@ class PostController extends Controller
     {
         $user = Auth::user();
         $items = Post::all();
-        $param = ['user'=>$user,'items'=>$items];
+        $msg = "投稿レシピ一覧";
+        $param = ['user'=>$user, 'msg'=>$msg, 'items'=>$items];
         return view('recipe.index',$param);
     }
 
@@ -62,6 +63,14 @@ class PostController extends Controller
     public function comment_add(Request $request,$id)
     {
         $user_id = Auth::user()->id;
+        $item =  Post::where('id',$id)->first();
+        $rate = $request->rate;
+        $rate_sum = $rate+$item->rate*$item->rate_count;
+        DB::table('posts')->where('id', $id)->update(['rate_count' => $item->rate_count + 1]);
+        $item = Post::where('id',$id)->first();
+        $rate_ave = $rate_sum/$item->rate_count;
+        DB::table('posts')->where('id', $id)->update(['rate' => $rate_ave]);
+
         $param = [
             'post_id' => $id,
             'user_id' => $user_id,
