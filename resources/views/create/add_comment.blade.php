@@ -32,6 +32,10 @@
     <table align="center">
         @csrf
         <tr>
+            <th>評価</th>
+            <td><input type="number" name="rate" min=1 max=5></td>
+        </tr>
+        <tr>
             <th>コメント </th>
             <td><textarea name="comment" cols="150" rows="10"></textarea></td>
         </tr>

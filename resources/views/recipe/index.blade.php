@@ -27,6 +27,10 @@
     </table>    
 </form>
 
+@if($msg != NULL)
+{{$msg}}
+@endif
+
 <table align="center">
     <tr>
         <th>id</th>
@@ -34,6 +38,7 @@
         <th>poster</th>
         <th>comments</th>
         <th>access</th>
+        <th>rate</th>
         <th>date1</th>
         <th>date2</th>
     </tr>
@@ -44,13 +49,16 @@
         <td>{{$item->recipe->user->name}}</td>
         <td>{{$item->comments_count}}</td>
         <td>{{$item->access_count}}</td>
+        <td>@php echo number_format($item->rate,1); @endphp</td>
         <td>{{$item->created_at}}</td>
         <td>{{$item->updated_at}}</td>
     </tr>
     @endforeach
 </table>
 
+@if(Auth::check())
 <a href="/myrecipe">マイページへ</a>
+@endif
 
 @endsection
 
