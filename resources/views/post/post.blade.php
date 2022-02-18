@@ -40,10 +40,7 @@ break;
 @endif
 @endforeach
 
-<form action="/myrecipe/edit/{{$item->id}}" method="post">
-    @csrf
-    <input type="submit" value="編集する">
-</form>
+<button type="button" onclick="location.href='edit/{{$item->id}}'">編集する</button>
 
 @if ($post_check != 1)
 <form action="/recipe/post/{{$item->id}}" method="post">
