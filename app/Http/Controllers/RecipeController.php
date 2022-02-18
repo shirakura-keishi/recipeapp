@@ -83,6 +83,7 @@ class RecipeController extends Controller
     {
         //SELECT * FROM posts where recipe_id in (SELECT id FROM recipes where name like '% $name %');
         //レシピ名検索
+        //以下の処理は改善希望
         $name = $request->searchward;
         $subject = $request->item;
         $user = Auth::user();
@@ -90,24 +91,23 @@ class RecipeController extends Controller
         $count = 0;
         $items = NULL;
 
-        //レシピ数と投稿数が一致しないときにバグが発生するので修正してください↓
         foreach ($results as $result) {
-            if ($count == 0) {//レコードが1つでもget()を使ってもいいのでは？
-                $items = Post::where('recipe_id', $result->id)->first();
-            } else {
-                $items[] = Post::where('recipe_id', $result->id)->first();
+            if (Post::where('recipe_id', $result->id)->first()) {
+                if ($count == 0) {
+                    $items = Post::where('recipe_id', $result->id)->get();
+                } else {
+                    $items[] = Post::where('recipe_id', $result->id)->first();
+                }
+                $count += 1;
             }
-            $count += 1;
         }
-        echo $results;
-        echo $items;
-        $msg = $count."件見つかりました";
+        $msg = $count . "件見つかりました";
 
         if ($items == NULL) {
             $items = Post::all();
             $msg = "検索条件に当てはまるものはありませんでした。レシピ一覧を表示します";
         }
-        $param = ['user' => $user, 'count' => $count,'msg' => $msg, 'items' => $items];
+        $param = ['user' => $user, 'count' => $count, 'msg' => $msg, 'items' => $items];
         return view('recipe.index', $param);
     }
 }
