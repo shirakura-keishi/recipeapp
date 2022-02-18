@@ -89,6 +89,8 @@ class RecipeController extends Controller
         $results = DB::table('recipes')->select('id')->where($subject, 'like', '%' . $name . '%')->get();
         $count = 0;
         $items = NULL;
+
+        //レシピ数と投稿数が一致しないときにバグが発生するので修正してください↓
         foreach ($results as $result) {
             if ($count == 0) {//レコードが1つでもget()を使ってもいいのでは？
                 $items = Post::where('recipe_id', $result->id)->get();
@@ -97,6 +99,7 @@ class RecipeController extends Controller
             }
             $count += 1;
         }
+        
         $msg = $count."件見つかりました";
 
         if ($items == NULL) {
