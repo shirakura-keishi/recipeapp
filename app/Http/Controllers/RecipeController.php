@@ -93,13 +93,14 @@ class RecipeController extends Controller
         //レシピ数と投稿数が一致しないときにバグが発生するので修正してください↓
         foreach ($results as $result) {
             if ($count == 0) {//レコードが1つでもget()を使ってもいいのでは？
-                $items = Post::where('recipe_id', $result->id)->get();
+                $items = Post::where('recipe_id', $result->id)->first();
             } else {
                 $items[] = Post::where('recipe_id', $result->id)->first();
             }
             $count += 1;
         }
-        
+        echo $results;
+        echo $items;
         $msg = $count."件見つかりました";
 
         if ($items == NULL) {
