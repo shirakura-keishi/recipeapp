@@ -22,7 +22,7 @@ class UserController extends Controller
         return view('recipe.recipe',$param);
     }
     
-    public function admin(Request $request){
+    public function userlist(Request $request){
         $users = User::all();
         return view('user.index',['users' => $users]);
     }
