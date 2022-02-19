@@ -49,6 +49,7 @@ Route::get('/myrecipe/update/{id?}', 'RecipeController@update');
 Route::post('/myrecipe/update/{id?}', 'RecipeController@update'); //updateメソッドにフォームからの情報(編集後のレシピデータ)を取得
 
 Route::get('userlist', 'UserController@userlist');
+Route::get('admin', 'UserController@admin');
 
 Route::get('/recipe/post/{id?}', 'PostController@post');
 Route::post('/recipe/post/{id?}', 'PostController@create');
