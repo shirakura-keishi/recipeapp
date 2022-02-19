@@ -34,7 +34,6 @@ Route::get('/myrecipe/delete/{id?}', 'RecipeController@delete');
 Route::post('/myrecipe/delete/{id?}', 'RecipeController@delete');
 
 Route::get('/myrecipe/edit/{id?}', 'RecipeController@edit');
-Route::post('/myrecipe/edit/{id?}', 'RecipeController@edit'); //editメソッドにフォームからの情報(id)を取得
 
 Route::get('/myrecipe/update/{id?}', 'RecipeController@update');
 Route::post('/myrecipe/update/{id?}', 'RecipeController@update'); //updateメソッドにフォームからの情報(編集後のレシピデータ)を取得
