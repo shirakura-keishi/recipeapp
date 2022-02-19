@@ -10,7 +10,7 @@
 @section('content')
 @if(Auth::check())
 <p>USER: {{$user->name . ' (' . $user->email . ')'}}でログインしています。</p>
-
+{{$msg}}
 <table align="center">
     <tr>
         <th>料理名</th>

@@ -1,7 +1,7 @@
 <?php
-
+ 
 return [
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -12,12 +12,12 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
-
+ 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'user',          // webからuserに変更
         'passwords' => 'users',
     ],
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -34,20 +34,27 @@ return [
     | Supported: "session", "token"
     |
     */
-
+ 
     'guards' => [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
+ 
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
-            'hash' => false,
+        ],
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'admin' => [ //追加
+            'driver' => 'session', //追加
+            'provider' => 'admins', //追加
         ],
     ],
-
+ 
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -64,19 +71,23 @@ return [
     | Supported: "database", "eloquent"
     |
     */
-
+ 
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
+        'admins' => [ //追加
+            'driver' => 'eloquent', //追加
+            'model' => App\Admin::class, //追加
+        ],
+ 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
     ],
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
@@ -91,27 +102,18 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
-
+ 
     'passwords' => [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
-            'throttle' => 60,
+        ],
+        'admins' => [ //追加
+            'provider' => 'admins', //追加
+            'table' => 'password_resets', //追加
+            'expire' => 60, //追加
         ],
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Password Confirmation Timeout
-    |--------------------------------------------------------------------------
-    |
-    | Here you may define the amount of seconds before a password confirmation
-    | times out and the user is prompted to re-enter their password via the
-    | confirmation screen. By default, the timeout lasts for three hours.
-    |
-    */
-
-    'password_timeout' => 10800,
-
+ 
 ];
