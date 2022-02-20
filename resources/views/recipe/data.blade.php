@@ -14,6 +14,9 @@
 
 @if($purchase_check <= 2)
 <table align="center">
+    @if($item->picture)
+    <img src="{{ Storage::url($item->picture) }}" style="width: 18rem; margin: 16px;" />
+    @endif
     <tr>
         <th>料理名</th>
         <td>{{$item->name}}</td>
