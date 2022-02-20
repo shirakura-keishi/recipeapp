@@ -56,7 +56,7 @@
     @endforeach
 </table>
 @else
-<a href="/recipe/{{$id}}/purchase">レシピを購入する</a>
+<a href="/recipe/{{$id}}/purchase">レシピを購入する</a><br>
 @endif
 
 @else
