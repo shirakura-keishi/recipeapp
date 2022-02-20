@@ -19,16 +19,18 @@ class RecipeController extends Controller
         $item = Recipe::where('id', $post->recipe_id)->first();
         $comments = Comment::where('post_id', $id)->get();
         DB::table('posts')->where('id', $id)->update(['access_count' => $post->access_count + 1]);
-        if($item->user_id != $user->id){
-            if($post->price > 0){
-                $msg = "このレシピを閲覧するには".$post->price."ポイント必要です";
+        if ($user) {
+            if ($item->user_id != $user->id) {
+                if ($post->price > 0) {
+                    $msg = "このレシピを閲覧するには" . $post->price . "ポイント必要です";
+                } else {
+                    $msg = "このレシピは無料で閲覧できます。";
+                }
+            } else {
+                $msg = "あなたが投稿したレシピです。";
             }
-            else{
-                $msg = "このレシピは無料で閲覧できます。";
-            }
-        }
-        else{
-            $msg = "あなたが投稿したレシピです。";
+        } else {
+            $msg = "ログインしていません";
         }
         $param = ['id' => $id, 'item' => $item, 'comments' => $comments, 'user' => $user, 'msg' => $msg];
         return view('recipe.data', $param);
@@ -65,7 +67,7 @@ class RecipeController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $item = Recipe::where('id', $id)->first(); 
+        $item = Recipe::where('id', $id)->first();
         return view('create.edit', ['form' => $item]);
     }
 
