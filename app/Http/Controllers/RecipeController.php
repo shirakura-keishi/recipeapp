@@ -41,17 +41,25 @@ class RecipeController extends Controller
 
     public function create(Request $request)
     {
-        $user_id = Auth::user()->id;
-        $param = [
-            'id' => $request->id,
-            'name' => $request->name,
-            'user_id' => $user_id,
-            'ingredient' => $request->ingredient,
-            'description' => $request->description,
-            'created_at' => $request->created_at,
-            'updated_at' => $request->updated_at
-        ];
-        DB::table('recipes')->insert($param);
+        //$request->validate(['image' => 'required|file|image|mimes:png,jpeg']);
+        $upload_picture = $request->file('picture');
+        if ($upload_picture) {
+            $path = $upload_picture->store('uploads', "public");
+            if ($path) {
+                $user_id = Auth::user()->id;
+                $param = [
+                    'id' => $request->id,
+                    'name' => $request->name,
+                    'user_id' => $user_id,
+                    'ingredient' => $request->ingredient,
+                    'description' => $request->description,
+                    'created_at' => $request->created_at,
+                    'updated_at' => $request->updated_at,
+                    'picture' => $path
+                ];
+                DB::table('recipes')->insert($param);
+            }
+        }
         return redirect('/myrecipe');
     }
 
@@ -63,17 +71,24 @@ class RecipeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user_id = Auth::user()->id;
-        $param = [
-            'id' => $request->id,
-            'name' => $request->name,
-            'user_id' => $user_id,
-            'ingredient' => $request->ingredient,
-            'description' => $request->description,
-            'created_at' => $request->created_at,
-            'updated_at' => $request->updated_at
-        ];
-        DB::table('recipes')->where('id', $id)->update($param);
+        $upload_picture = $request->file('picture');
+        if ($upload_picture) {
+            $path = $upload_picture->store('uploads', "public");
+            if ($path) {
+                $user_id = Auth::user()->id;
+                $param = [
+                    'id' => $request->id,
+                    'name' => $request->name,
+                    'user_id' => $user_id,
+                    'ingredient' => $request->ingredient,
+                    'description' => $request->description,
+                    'created_at' => $request->created_at,
+                    'updated_at' => $request->updated_at,
+                    'picture' => $path
+                ];
+                DB::table('recipes')->where('id', $id)->update($param);
+            }
+        }
         return redirect('/myrecipe');
     }
 

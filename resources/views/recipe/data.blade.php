@@ -12,6 +12,9 @@
 <p>USER: {{$user->name . ' (' . $user->email . ')'}}でログインしています。</p>
 {{$msg}}
 <table align="center">
+    @if($item->picture)
+    <img src="{{ Storage::url($item->picture) }}" style="width: 18rem; margin: 16px;" />
+    @endif
     <tr>
         <th>料理名</th>
         <td>{{$item->name}}</td>
@@ -30,7 +33,7 @@
     </tr>
 </table>
 
-@if($user->id != $item->user_id) 
+@if($user->id != $item->user_id)
 <a href="/recipe/{{$id}}/comment">評価・コメントを書き込む</a>
 @endif
 
