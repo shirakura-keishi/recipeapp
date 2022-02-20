@@ -12,6 +12,7 @@ class RecipesTableSeeder extends Seeder
     public function run()
     {
         $param = [
+            'id' => 1001,
             'name' => '牛肉と野菜の五目辛煮',
             'user_id' => 1,
             'ingredient' => "4人前
@@ -34,6 +35,7 @@ class RecipesTableSeeder extends Seeder
         DB::table('recipes')->insert($param);
 
         $param = [
+            'id' => 1002,
             'name' => 'ずぼらなべ',
             'user_id' => 2,
             'ingredient' => "4人前
@@ -56,6 +58,7 @@ class RecipesTableSeeder extends Seeder
         DB::table('recipes')->insert($param);
 
         $param = [
+            'id' => 1003,
             'name' => 'レンジで時短♫　簡単美味！　楽うま豚丼♡',
             'user_id' => 3,
             'ingredient' => "温かいご飯丼１杯分
