@@ -9,56 +9,39 @@ use App\User;
 use App\Recipe;
 use App\Post;
 use App\Comment;
-<<<<<<< HEAD
 use App\PurchasedRecipe;
-=======
-use phpDocumentor\Reflection\Types\Null_;
->>>>>>> develop-s5
 
 class RecipeController extends Controller
 {
-    public function index(Request $request, $id)//トップページからのレシピ詳細
+    public function index(Request $request, $id) //トップページからのレシピ詳細
     {
         $user = Auth::user();
         $post = Post::where('id', $id)->first();
         $item = Recipe::where('id', $post->recipe_id)->first();
         $comments = Comment::where('post_id', $id)->get();
         DB::table('posts')->where('id', $id)->update(['access_count' => $post->access_count + 1]);
-<<<<<<< HEAD
         $purchases = PurchasedRecipe::where('post_id', $id)->get();
         $purchase_check = 3;
-        if($item->user_id != $user->id){
-            if($post->price > 0){
-                $msg = "このレシピを閲覧するには".$post->price."ポイント必要です";
-                foreach($purchases as $purchase){
-                    if($purchase->user_id == $user->id){
-                        $msg = "購入済みのレシピです。";
-                        $purchase_check = 2;
-                    }
-                }
-            }
-            else{
-                $msg = "このレシピは無料で閲覧できます。";
-                $purchase_check = 0;
-            }
-        }
-        else{
-            $msg = "あなたが投稿したレシピです。";
-            $purchase_check = 1;
-=======
         if ($user) {
             if ($item->user_id != $user->id) {
                 if ($post->price > 0) {
                     $msg = "このレシピを閲覧するには" . $post->price . "ポイント必要です";
+                    foreach ($purchases as $purchase) {
+                        if ($purchase->user_id == $user->id) {
+                            $msg = "購入済みのレシピです。";
+                            $purchase_check = 2;
+                        }
+                    }
                 } else {
                     $msg = "このレシピは無料で閲覧できます。";
+                    $purchase_check = 0;
                 }
             } else {
                 $msg = "あなたが投稿したレシピです。";
+                $purchase_check = 1;
             }
         } else {
             $msg = "ログインしていません";
->>>>>>> develop-s5
         }
         $param = ['id' => $id, 'item' => $item, 'comments' => $comments, 'user' => $user, 'msg' => $msg, 'purchase_check' => $purchase_check];
         return view('recipe.data', $param);
