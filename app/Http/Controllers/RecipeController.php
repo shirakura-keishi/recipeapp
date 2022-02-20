@@ -9,6 +9,7 @@ use App\User;
 use App\Recipe;
 use App\Post;
 use App\Comment;
+use phpDocumentor\Reflection\Types\Null_;
 
 class RecipeController extends Controller
 {
@@ -45,23 +46,24 @@ class RecipeController extends Controller
     {
         //$request->validate(['image' => 'required|file|image|mimes:png,jpeg']);
         $upload_picture = $request->file('picture');
+        $path = NULL;
         if ($upload_picture) {
             $path = $upload_picture->store('uploads', "public");
             if ($path) {
-                $user_id = Auth::user()->id;
-                $param = [
-                    'id' => $request->id,
-                    'name' => $request->name,
-                    'user_id' => $user_id,
-                    'ingredient' => $request->ingredient,
-                    'description' => $request->description,
-                    'created_at' => $request->created_at,
-                    'updated_at' => $request->updated_at,
-                    'picture' => $path
-                ];
-                DB::table('recipes')->insert($param);
             }
         }
+        $user_id = Auth::user()->id;
+        $param = [
+            'id' => $request->id,
+            'name' => $request->name,
+            'user_id' => $user_id,
+            'ingredient' => $request->ingredient,
+            'description' => $request->description,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at,
+            'picture' => $path
+        ];
+        DB::table('recipes')->insert($param);
         return redirect('/myrecipe');
     }
 
