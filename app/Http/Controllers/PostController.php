@@ -9,10 +9,11 @@ use App\User;
 use App\Recipe;
 use App\Post;
 use App\Comment;
+use App\PurchasedRecipe;
 
 class PostController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request)//トップページのデータ
     {
         $user = Auth::user();
         $items = Post::all();
@@ -21,7 +22,7 @@ class PostController extends Controller
         return view('recipe.index',$param);
     }
 
-    public function post(Request $request,$id)
+    public function post(Request $request,$id)//マイページのレシピ詳細
     {
         $user = Auth::user();
         $item = Recipe::where('id',$id)->first();

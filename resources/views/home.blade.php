@@ -19,6 +19,7 @@
             </div>
         </div>
     </div>
+    <a href="/recipe">トップページへ</a>
     <p><a href="/myrecipe">マイページへ</a></p>
 </div>
 @endsection

@@ -11,6 +11,8 @@
 @if(Auth::check())
 <p>USER: {{$user->name . ' (' . $user->email . ')'}}でログインしています。</p>
 {{$msg}}
+
+@if($purchase_check <= 2)
 <table align="center">
     @if($item->picture)
     <img src="{{ Storage::url($item->picture) }}" style="width: 18rem; margin: 16px;" />
@@ -33,7 +35,7 @@
     </tr>
 </table>
 
-@if($user->id != $item->user_id)
+@if($purchase_check == 0) 
 <a href="/recipe/{{$id}}/comment">評価・コメントを書き込む</a>
 @endif
 
@@ -56,6 +58,9 @@
     </tr>
     @endforeach
 </table>
+@else
+<a href="/recipe/{{$id}}/purchase">レシピを購入する</a><br>
+@endif
 
 @else
 <p>※ログインしていません。(<a href="/login">ログイン</a>|<a href="/register">登録</a>)</p>

@@ -35,6 +35,7 @@ Route::get('recipe/{id?}', 'RecipeController@index');
 Route::get('recipe/{id?}/comment', 'PostController@comment');
 Route::get('recipe/{id?}/comment/add', 'PostController@comment_add');
 Route::post('recipe/{id?}/comment/add', 'PostController@comment_add');
+Route::get('recipe/{id?}/purchase', 'UserController@purchase');
 
 Route::get('myrecipe', 'UserController@my_recipe');
 Route::get('myrecipe/{id?}', 'PostController@post');
