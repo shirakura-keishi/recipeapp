@@ -44,10 +44,11 @@ break;
 @endforeach
 
 <button type="button" onclick="location.href='edit/{{$item->id}}'">編集する</button>
-
+<p></p>
 @if ($post_check != 1)
 <form action="/recipe/post/{{$item->id}}" method="post">
     @csrf
+    閲覧料<input type="number" name="price" value=0 min=0 max=99999>ポイントで
     <input type="submit" value="投稿する">
 </form>
 <form action="/myrecipe/delete/{{$item->id}}" method="post">

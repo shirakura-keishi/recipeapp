@@ -28,6 +28,9 @@ class PostController extends Controller
         $posts = Post::all();
         $post_check = 0;
         $param = ['item' => $item,'user' => $user, 'posts'=>$posts, 'post_check' => $post_check];
+        if($user->id != $item->user_id){
+            return redirect('recipe');
+        }
         return view('post.post',$param);
     }
 
@@ -37,7 +40,8 @@ class PostController extends Controller
         $param = [
             'recipe_id' => $id,
             'comments_count' => 0,
-            'access_count' => 0
+            'access_count' => 0,
+            'price' => $request->price,
         ];
         DB::table('posts')->insert($param);
         return redirect('/recipe');

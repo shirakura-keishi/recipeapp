@@ -10,7 +10,7 @@
 @section('content')
 @if(Auth::check())
 <p>USER: {{$user->name . ' (' . $user->email . ')'}}でログインしています。</p>
-
+{{$msg}}
 <table align="center">
     @if($item->picture)
     <img src="{{ Storage::url($item->picture) }}" style="width: 18rem; margin: 16px;" />

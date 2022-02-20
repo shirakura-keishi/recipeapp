@@ -20,6 +20,16 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('/',         function () { return redirect('/admin/home'); });
+    Route::get('login',     'Admin\LoginController@showLoginForm')->name('admin.login');
+    Route::post('login',    'Admin\LoginController@login');
+});
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
+    Route::post('logout',   'Admin\LoginController@logout')->name('admin.logout');
+    Route::get('home',      'Admin\HomeController@index')->name('admin.home');
+});
+
 Route::get('recipe', 'PostController@index');
 Route::get('recipe/{id?}', 'RecipeController@index');
 Route::get('recipe/{id?}/comment', 'PostController@comment');
@@ -40,6 +50,7 @@ Route::get('/myrecipe/edit/{id?}', 'RecipeController@edit');
 Route::get('/myrecipe/update/{id?}', 'RecipeController@update');
 Route::post('/myrecipe/update/{id?}', 'RecipeController@update'); //updateメソッドにフォームからの情報(編集後のレシピデータ)を取得
 
+Route::get('userlist', 'UserController@userlist');
 Route::get('admin', 'UserController@admin');
 
 Route::get('/recipe/post/{id?}', 'PostController@post');
