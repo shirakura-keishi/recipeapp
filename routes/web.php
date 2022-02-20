@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\ImageListController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -64,3 +66,10 @@ Route::post('/myrecipe/edit/{id?}', 'RecipeController@update');
 
 Route::get('/recipe/search', 'RecipeController@search');
 Route::post('/recipe/search', 'RecipeController@search');
+
+//https://note.com/laravelstudy/n/n038bd68f53a7#BkZEu より引用
+Route::get('/form','UploadImageController@show')->name("upload_form");
+
+Route::post('/upload','UploadImageController@upload')->name("upload_image");
+
+Route::get('/list','ImageListController@show')->name("image_list");
