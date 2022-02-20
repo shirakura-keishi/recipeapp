@@ -9,7 +9,11 @@ use App\User;
 use App\Recipe;
 use App\Post;
 use App\Comment;
+<<<<<<< HEAD
 use App\PurchasedRecipe;
+=======
+use phpDocumentor\Reflection\Types\Null_;
+>>>>>>> develop-s5
 
 class RecipeController extends Controller
 {
@@ -20,6 +24,7 @@ class RecipeController extends Controller
         $item = Recipe::where('id', $post->recipe_id)->first();
         $comments = Comment::where('post_id', $id)->get();
         DB::table('posts')->where('id', $id)->update(['access_count' => $post->access_count + 1]);
+<<<<<<< HEAD
         $purchases = PurchasedRecipe::where('post_id', $id)->get();
         $purchase_check = 3;
         if($item->user_id != $user->id){
@@ -40,6 +45,20 @@ class RecipeController extends Controller
         else{
             $msg = "あなたが投稿したレシピです。";
             $purchase_check = 1;
+=======
+        if ($user) {
+            if ($item->user_id != $user->id) {
+                if ($post->price > 0) {
+                    $msg = "このレシピを閲覧するには" . $post->price . "ポイント必要です";
+                } else {
+                    $msg = "このレシピは無料で閲覧できます。";
+                }
+            } else {
+                $msg = "あなたが投稿したレシピです。";
+            }
+        } else {
+            $msg = "ログインしていません";
+>>>>>>> develop-s5
         }
         $param = ['id' => $id, 'item' => $item, 'comments' => $comments, 'user' => $user, 'msg' => $msg, 'purchase_check' => $purchase_check];
         return view('recipe.data', $param);
@@ -54,29 +73,30 @@ class RecipeController extends Controller
     {
         //$request->validate(['image' => 'required|file|image|mimes:png,jpeg']);
         $upload_picture = $request->file('picture');
+        $path = NULL;
         if ($upload_picture) {
             $path = $upload_picture->store('uploads', "public");
             if ($path) {
-                $user_id = Auth::user()->id;
-                $param = [
-                    'id' => $request->id,
-                    'name' => $request->name,
-                    'user_id' => $user_id,
-                    'ingredient' => $request->ingredient,
-                    'description' => $request->description,
-                    'created_at' => $request->created_at,
-                    'updated_at' => $request->updated_at,
-                    'picture' => $path
-                ];
-                DB::table('recipes')->insert($param);
             }
         }
+        $user_id = Auth::user()->id;
+        $param = [
+            'id' => $request->id,
+            'name' => $request->name,
+            'user_id' => $user_id,
+            'ingredient' => $request->ingredient,
+            'description' => $request->description,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at,
+            'picture' => $path
+        ];
+        DB::table('recipes')->insert($param);
         return redirect('/myrecipe');
     }
 
     public function edit(Request $request, $id)
     {
-        $item = Recipe::where('id', $id)->first(); 
+        $item = Recipe::where('id', $id)->first();
         return view('create.edit', ['form' => $item]);
     }
 
