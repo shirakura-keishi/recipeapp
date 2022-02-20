@@ -1,5 +1,3 @@
-// create_admins_table.php
-
 <?php
 
 use Illuminate\Support\Facades\Schema;
