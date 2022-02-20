@@ -12,7 +12,7 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'recipe_id' => 1,
+            'recipe_id' => 1001,
             'comments_count' => 0,
             'access_count' => 0,
             'price' => 0,
@@ -20,7 +20,7 @@ class PostsTableSeeder extends Seeder
         DB::table('posts')->insert($param);
 
         $param = [
-            'recipe_id' => 2,
+            'recipe_id' => 1002,
             'comments_count' => 0,
             'access_count' => 0,
             'price' => 0,
@@ -28,7 +28,7 @@ class PostsTableSeeder extends Seeder
         DB::table('posts')->insert($param);
 
         $param = [
-            'recipe_id' => 3,
+            'recipe_id' => 1003,
             'comments_count' => 0,
             'access_count' => 0,
             'price' => 100,
