@@ -61,17 +61,24 @@ class RecipeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user_id = Auth::user()->id;
-        $param = [
-            'id' => $request->id,
-            'name' => $request->name,
-            'user_id' => $user_id,
-            'ingredient' => $request->ingredient,
-            'description' => $request->description,
-            'created_at' => $request->created_at,
-            'updated_at' => $request->updated_at
-        ];
-        DB::table('recipes')->where('id', $id)->update($param);
+        $upload_picture = $request->file('picture');
+        if ($upload_picture) {
+            $path = $upload_picture->store('uploads', "public");
+            if ($path) {
+                $user_id = Auth::user()->id;
+                $param = [
+                    'id' => $request->id,
+                    'name' => $request->name,
+                    'user_id' => $user_id,
+                    'ingredient' => $request->ingredient,
+                    'description' => $request->description,
+                    'created_at' => $request->created_at,
+                    'updated_at' => $request->updated_at,
+                    'picture' => $path
+                ];
+                DB::table('recipes')->where('id', $id)->update($param);
+            }
+        }
         return redirect('/myrecipe');
     }
 

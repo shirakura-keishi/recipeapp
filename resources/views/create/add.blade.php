@@ -9,7 +9,7 @@
 <form action="add" method="post" enctype="multipart/form-data">
     <table>
         @csrf
-        <input type="file" name="picture" accept="image/png, image/jpeg">/>
+        <input type="file" name="picture" accept="image/png, image/jpeg">=>
         <tr>
             <th>料理名: </th>
             <td><input type="text" name="name"></td>

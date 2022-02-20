@@ -6,10 +6,14 @@
 @endsection
 
 @section('content')
-<form action="/myrecipe/update/{{$form->id}}" method="post">
-    <table>
+<form action="/myrecipe/update/{{$form->id}}" method="post" enctype="multipart/form-data">
+    <table align="center">
         @csrf
         <input type="hidden" name="id" value="{{$form->id}}">
+        @if($form->picture)
+        <img src="{{ Storage::url($form->picture) }}" style="width: 18rem; margin: 16px;" />
+        @endif
+        =><input type="file" name="picture" accept="image/png, image/jpeg">
         <tr>
             <th>料理名: </th>
             <td><input type="text" name="name" value="{{$form->name}}"></td>
@@ -20,7 +24,7 @@
         </tr>
         <tr>
             <th>作り方: </th>
-            <td><textarea name="description" cols="10000" rows="6">{{$form->description}}</textarea></td>
+            <td><textarea name="description" cols="150" rows="10">{{$form->description}}</textarea></td>
         </tr>
         <tr>
             <th>created_at: </th>
@@ -42,4 +46,3 @@
 @section('footer')
 copyright 2022 kaichi.
 @endsection
-
