@@ -26,6 +26,8 @@
             <th>作り方: </th>
             <td><textarea name="description" cols="150" rows="10">{{$form->description}}</textarea></td>
         </tr>
+        
+        {{--
         <tr>
             <th>created_at: </th>
             <td><input type="text" name="created_at" value="{{$form->created_at}}" disabled></td>
@@ -34,10 +36,13 @@
             <th>updated_at: </th>
             <td><input type="text" name="updated_at"></td>
         </tr>
+        --}}
+
         <tr>
             <th></th>
             <td><input type="submit" value="保存する"></td>
         </tr>
+        
     </table>
 </form>
 <a href="/myrecipe">保存せずマイページへ戻る</a>
