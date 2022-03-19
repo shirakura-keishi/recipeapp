@@ -10,6 +10,7 @@
 @section('content')
 @if(Auth::check())
 <p>USER: {{$user->name . ' (' . $user->email . ')'}}でログインしています。</p>
+<p>残高 : {{$user->balance}}ポイント</p>
 <table align="center">
     <tr>
         <th>id</th>
