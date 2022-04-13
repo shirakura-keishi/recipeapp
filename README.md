@@ -2,6 +2,8 @@
 
 自分の料理レシピを投稿したり、他のユーザが投稿したレシピを閲覧したりできます。
 
+<http://160.251.105.129/recipe>
+
 ![giphy](https://user-images.githubusercontent.com/95925019/156766530-f11b394f-9757-42ad-b31c-4f22bc32e8d1.gif)
 
 # Features
